@@ -1,15 +1,6 @@
-**💛 You can help the author become a full-time open-source maintainer by [sponsoring him on GitHub](https://github.com/sponsors/egoist).**
+# ts-blank-loader
 
----
-
-# my-ts-lib
-
-[![npm version](https://badgen.net/npm/v/my-ts-lib)](https://npm.im/my-ts-lib) [![npm downloads](https://badgen.net/npm/dm/my-ts-lib)](https://npm.im/my-ts-lib)
-
-## Using this template
-
-- Search `my-ts-lib` and replace it with your custom package name.
-- Search `egoist` and replace it with your name.
+[![npm version](https://badgen.net/npm/v/ts-blank-loader)](https://npm.im/ts-blank-loader) [![npm downloads](https://badgen.net/npm/dm/ts-blank-loader)](https://npm.im/ts-blank-loader)
 
 Features:
 
@@ -23,13 +14,9 @@ To skip CI (GitHub action), add `skip-ci` to commit message. To skip release, ad
 ## Install
 
 ```bash
-npm i my-ts-lib
+npm i ts-blank-loader
 ```
-
-## Sponsors
-
-[![sponsors](https://sponsors-images.egoist.dev/sponsors.svg)](https://github.com/sponsors/egoist)
 
 ## License
 
-MIT &copy; [EGOIST](https://github.com/sponsors/egoist)
+MIT &copy;
