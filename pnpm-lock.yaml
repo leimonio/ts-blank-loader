@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      ts-blank-space:
+        specifier: ^0.4.1
+        version: 0.4.1
     devDependencies:
       '@egoist/prettier-config':
         specifier: 1.0.0
@@ -859,6 +863,10 @@ packages:
     resolution: {integrity: sha512-L0Orpi8qGpRG//Nd+H90vFB+3iHnue1zSSGmNOOCh1GLJ7rUKVwV2HvijphGQS2UmhUZewS9VgvxYIdgr+fG1A==}
     hasBin: true
 
+  ts-blank-space@0.4.1:
+    resolution: {integrity: sha512-i0JvTvFaZcXCj+tcs67G0K3zXgUr1ebGvhmuB3ov0ByFrbuvTOgUwtFEOP8dN+B+ou0wkhosJ8Q4RPfi8mHFQQ==}
+    engines: {node: '>=18.0.0'}
+
   ts-interface-checker@0.1.13:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
 
@@ -885,6 +893,11 @@ packages:
   typescript@4.9.5:
     resolution: {integrity: sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==}
     engines: {node: '>=4.2.0'}
+    hasBin: true
+
+  typescript@5.6.2:
+    resolution: {integrity: sha512-NW8ByodCSNCwZeghjN3o+JX5OFH0Ojg6sadjEKY4huZ52TqbJTJnDo5+Tw98lSy63NZvi4n+ez5m2u5d4PkZyw==}
+    engines: {node: '>=14.17'}
     hasBin: true
 
   ufo@1.5.4:
@@ -1684,6 +1697,10 @@ snapshots:
 
   tree-kill@1.2.2: {}
 
+  ts-blank-space@0.4.1:
+    dependencies:
+      typescript: 5.6.2
+
   ts-interface-checker@0.1.13: {}
 
   tsup@6.6.3(postcss@8.4.47)(typescript@4.9.5):
@@ -1712,6 +1729,8 @@ snapshots:
   type-detect@4.1.0: {}
 
   typescript@4.9.5: {}
+
+  typescript@5.6.2: {}
 
   ufo@1.5.4: {}
 

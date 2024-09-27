@@ -1,6 +1,7 @@
 import { test, assert } from "vitest"
-import { foo } from "../src"
+import tsBlankLoader from "../src"
 
-test("simple", () => {
-  assert.equal(foo, "foo")
+test("ts-blank-loader", async () => {
+  const result = await tsBlankLoader(`let x: string;`)
+  assert.equal(result, "let x        ;")
 })
