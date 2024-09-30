@@ -70,7 +70,11 @@ jobs:
             ${{ runner.os }}-
       - run: npm i -g pnpm
       - run: pnpm i
-      - run: pnpm dlx semantic-release@20 --branches main
+      - run: pnpm version patch
+      - run: pnpm publish
         env:
           GITHUB_TOKEN: ${{ secrets.REPO_GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.REPO_NPM_TOKEN }}
+      - run: git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.REPO_GITHUB_TOKEN }}
