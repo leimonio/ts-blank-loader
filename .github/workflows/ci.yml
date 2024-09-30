@@ -74,10 +74,10 @@ jobs:
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor}}@users.noreply.github.com"
           pnpm version patch
-      - run: pnpm publish
-        env:
-          GITHUB_TOKEN: ${{ secrets.REPO_GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.REPO_NPM_TOKEN }}
-      - run: git push origin main
+      - run: |
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.REPO_NPM_TOKEN }}" > .npmrc
+          pnpm config set access public
+          pnpm publish
+      - run: git push origin main --tags
         env:
           GITHUB_TOKEN: ${{ secrets.REPO_GITHUB_TOKEN }}
