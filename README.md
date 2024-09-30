@@ -8,6 +8,80 @@
 npm i ts-blank-loader
 ```
 
+## Usage in Rspack & Webpack
+
+**Typescript**
+
+```javascript
+// rspack.config.js or webpack.config.js
+
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.ts$/,
+        use: "ts-blank-loader",
+      },
+    ],
+  },
+}
+```
+
+**TSX**
+
+```javascript
+// rspack.config.js
+
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.tsx$/,
+        use: [
+          {
+            loader: "builtin:swc-loader",
+            options: {
+              jsc: {
+                parser: {
+                  syntax: "ecmascript",
+                  jsx: true,
+                },
+              },
+            },
+          },
+          "ts-blank-loader",
+        ],
+        exclude: /node_modules/,
+      },
+    ],
+  },
+}
+```
+
+```javascript
+// webpack.config.js
+
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.tsx$/,
+        use: [
+          {
+            loader: "babel-loader", // Use Babel loader for transpiling JavaScript
+            options: {
+              presets: ["@babel/preset-env", "@babel/preset-react"], // Use presets for modern JavaScript and React
+            },
+          },
+          "ts-blank-loader",
+        ],
+        exclude: /node_modules/,
+      },
+    ],
+  },
+}
+```
+
 ## License
 
 MIT &copy;
