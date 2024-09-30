@@ -1,6 +1,6 @@
 {
   "name": "ts-blank-loader",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Loader for ts-blank-space - a small, fast, pure JavaScript type-stripper that uses the official TypeScript parser.",
   "publishConfig": {
     "access": "public"
