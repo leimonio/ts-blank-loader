@@ -1,10 +1,11 @@
 import { afterEach, describe, expect, it, vi } from "vitest"
 import tsBlankLoaderOriginal from "../src"
 
-function setupModule() {
+function setupModule({ mockedThis } = { mockedThis: {} }) {
   const mockCallback = vi.fn()
   const mockThis = {
     async: vi.fn().mockImplementation(() => mockCallback),
+    ...mockedThis,
   }
   const tsBlankLoader = tsBlankLoaderOriginal.bind(mockThis)
   return { mockCallback, mockThis, tsBlankLoader }
@@ -26,7 +27,11 @@ describe("ts-blank-loader", () => {
   })
 
   it("should call callback with preserved tsx", async () => {
-    const { mockCallback, mockThis, tsBlankLoader } = setupModule()
+    const { mockCallback, mockThis, tsBlankLoader } = setupModule({
+      mockedThis: {
+        resourcePath: "App.tsx",
+      },
+    })
 
     const tsxContent = `
 const App = () => {

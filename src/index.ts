@@ -1,6 +1,10 @@
+import ts from "typescript"
+import type { LoaderDefinitionFunction } from "@rspack/core"
 import type TsBlankSpace from "ts-blank-space"
+import { type blankSourceFile as TsBlankSourceFile } from "ts-blank-space"
 
 let tsBlankSpace: typeof TsBlankSpace
+let tsBlankSourceFile: typeof TsBlankSourceFile
 
 class TsBlankLoaderError extends Error {
   name = "TsBlankLoaderError"
@@ -11,18 +15,33 @@ class TsBlankLoaderError extends Error {
   }
 }
 
-export default async function (content: any) {
-  // @ts-ignore
+export default async function (this: LoaderDefinitionFunction, content: any) {
   const callback = this.async()
 
   if (!tsBlankSpace) {
-    const { default: tsBlankSpaceImport } = await import("ts-blank-space")
+    const {
+      default: tsBlankSpaceImport,
+      blankSourceFile: tsBlankSourceFileImport,
+    } = await import("ts-blank-space")
     tsBlankSpace = tsBlankSpaceImport
+    tsBlankSourceFile = tsBlankSourceFileImport
   }
 
   try {
     const onError = (n: any): void => {
       throw new TsBlankLoaderError(n)
+    }
+
+    if (this.resourcePath?.includes(".tsx")) {
+      const tsxSource = ts.createSourceFile(
+        this.resourcePath,
+        content,
+        ts.ScriptTarget.ESNext,
+        false,
+        ts.ScriptKind.TSX,
+      )
+      const jsxOutput = tsBlankSourceFile(tsxSource, onError)
+      return callback(null, jsxOutput)
     }
 
     const output = tsBlankSpace(content, onError)
