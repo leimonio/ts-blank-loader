@@ -2,6 +2,8 @@
 
 [![npm version](https://badgen.net/npm/v/ts-blank-loader)](https://npm.im/ts-blank-loader) [![npm downloads](https://badgen.net/npm/dm/ts-blank-loader)](https://npm.im/ts-blank-loader)
 
+Typescript compilation using [`ts-blank-space`](https://github.com/bloomberg/ts-blank-space) with your favourite bundler.
+
 ## Install
 
 ```bash
