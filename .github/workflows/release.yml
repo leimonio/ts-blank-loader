@@ -1,0 +1,38 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Cache ~/.pnpm-store
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-pnpm-store
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-${{ matrix.node-version }}-release-${{ env.cache-name }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ matrix.node-version }}-release-${{ env.cache-name }}-
+            ${{ runner.os }}-${{ matrix.node-version }}-release-
+            ${{ runner.os }}-
+      - run: npm i -g pnpm
+      - run: pnpm i
+      - name: Publish Packages
+        continue-on-error: true
+        env:
+          # setting the "npm_config_//registry.npmjs.org/:_authToken" env variable directly doesn't work.
+          # probably "pnpm release" doesn't pass auth tokens to child processes
+          NPM_TOKEN: ${{ secrets.REPO_NPM_TOKEN }}
+        run: |
+          # pnpm config set is broken
+          npm config set "//registry.npmjs.org/:_authToken" "${NPM_TOKEN}"
+          pnpm publish
