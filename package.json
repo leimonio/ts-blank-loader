@@ -1,6 +1,6 @@
 {
   "name": "ts-blank-loader",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Loader for ts-blank-space - a small, fast, pure JavaScript type-stripper that uses the official TypeScript parser.",
   "publishConfig": {
     "access": "public"
@@ -23,6 +23,7 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@changesets/cli": "^2.27.8",
     "@egoist/prettier-config": "1.0.0",
     "prettier": "2.8.4",
     "tsup": "6.6.3",

@@ -70,14 +70,12 @@ jobs:
             ${{ runner.os }}-
       - run: npm i -g pnpm
       - run: pnpm i
-      - run: |
-          git config user.name "${{ github.actor }}"
-          git config user.email "${{ github.actor}}@users.noreply.github.com"
-          pnpm version patch
-      - run: |
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.REPO_NPM_TOKEN }}" > .npmrc
-          pnpm config set access public
-          pnpm publish
-      - run: git push origin main --tags
+      - name: Publish Packages
+        continue-on-error: true
         env:
-          GITHUB_TOKEN: ${{ secrets.REPO_GITHUB_TOKEN }}
+          # setting the "npm_config_//registry.npmjs.org/:_authToken" env variable directly doesn't work.
+          # probably "pnpm release" doesn't pass auth tokens to child processes
+          NPM_TOKEN: ${{ secrets.REPO_NPM_TOKEN }}
+        run: |
+          npm config set "//registry.npmjs.org/:_authToken" "${NPM_TOKEN}" # pnpm config set is broken
+          pnpm release --dry-run
