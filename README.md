@@ -12,10 +12,10 @@ npm i ts-blank-loader
 
 ## Usage in Rspack & Webpack
 
-**Typescript**
+### Typescript
 
 ```javascript
-// rspack.config.js or webpack.config.js
+// rspack.config.js (or webpack.config.js)
 
 module.exports = {
   module: {
@@ -29,7 +29,9 @@ module.exports = {
 }
 ```
 
-**TSX**
+### TSX
+
+**Rspack**
 
 ```javascript
 // rspack.config.js
@@ -59,6 +61,8 @@ module.exports = {
   },
 }
 ```
+
+**Webpack**
 
 ```javascript
 // webpack.config.js
